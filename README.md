@@ -12,7 +12,7 @@ A sharded version of `golang.org/x/sync/singleflight` ([code](https://github.com
 
 ### Show me the money!
 
-*shardedsingleflight* allows configuring both the shard count and shard mapping ([hash](https://pkg.go.dev/hash#Hash64)) algorithm to be specified. Below is a comparison of parallel vanilla *singleflight* (`noshard-24`) vs. *shardedsingleflight* on a 24 logical-core machine using various hash algorithms and the default shard count heuristic (`nextPrime(v-cores * 7)`). On this machine, *shardedsingleflight* using [FNV-64](https://pkg.go.dev/hash/fnv) is about **9x faster** than vanilla *singleflight*. As always test on your own hardware and using your own software to valid this is worth using over vanilla *singleflight*.
+*shardedsingleflight* allows configuring both the shard count and shard mapping ([hash](https://pkg.go.dev/hash#Hash64)) algorithm to be overridden. Below is a comparison of parallel vanilla *singleflight* (`noshard-24`) vs. *shardedsingleflight* on a 24 logical-core machine using various hash algorithms and the default shard count heuristic (`nextPrime(v-cores * 7)`). On this machine, *shardedsingleflight* using [FNV-64](https://pkg.go.dev/hash/fnv) is about **9x faster** than vanilla *singleflight*. As always test on your own hardware and using your own software to validate this is worth using over vanilla *singleflight*.
 ```
 go test -test.bench=.*
 goos: linux
