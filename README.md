@@ -1,7 +1,7 @@
 # shardedsingleflight
  [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)[![Go Reference](https://pkg.go.dev/badge/github.com/tarndt/shardedsingleflight.svg)](https://pkg.go.dev/github.com/tarndt/shardedsingleflight) [![Go Report Card](https://goreportcard.com/badge/github.com/tarndt/shardedsingleflight)](https://goreportcard.com/report/github.com/tarndt/shardedsingleflight)
 
-A sharded version of `golang.org/x/sync/singleflight` ([code](https://github.com/golang/sync/tree/master/singleflight), [docs](https://pkg.go.dev/golang.org/x/sync/singleflight)) for high contention/concurrency environments.
+A sharded wrapper for `golang.org/x/sync/singleflight` ([code](https://github.com/golang/sync/tree/master/singleflight), [docs](https://pkg.go.dev/golang.org/x/sync/singleflight)) for high contention/concurrency environments.
 
 ## What is singleflight?
 If you are not familiar, *singleflight* is a package created by [Brad Fitzpatrick](https://en.wikipedia.org/wiki/Brad_Fitzpatrick) that addresses the [thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem) by assigning every operation a key and de-duplicating concurrently invoked operations based on that key. So for example, if you have a function that reads a file from disk and you wrap that function with singleflight, if the function is invoked twice, the second caller will get the same result returned to the first caller and the file will only be read once.
